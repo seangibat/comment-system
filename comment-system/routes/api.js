@@ -8,7 +8,7 @@ router
   .get('/threads', threadController.getThreads)
   .get('/thread/:threadId', threadController.getThread)
   .post('/thread', threadController.createThread)
-  .get('/post/:postId', postController.getPost);
+  .get('/post/:postId', postController.getPost)
   .post('/post', postController.createPost);
 
 module.exports = router;
