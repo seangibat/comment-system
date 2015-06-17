@@ -1,0 +1,27 @@
+
+<div>
+  <p class="post-score">
+    <b>{{post.author}}</b> - 
+    <span class="glyphicon glyphicon-arrow-up" ng-class="{disabled:votes[post._id] == 1}" aria-hidden="true" ng-click="votes[post._id] == 1 || vote(post, 1)"></span>
+    <span class="glyphicon glyphicon-arrow-down" ng-class="{disabled:votes[post._id] == -1}" aria-hidden="true" ng-click="votes[post._id] == -1 || vote(post, -1)"></span>
+    <span class="score">{{post.score}}</span>
+  </p>
+  <p class="post-body">{{post.body}}</p>
+  <p class="post-reply-trigger btn btn-default" ng-click="post.replyTrigger = !post.replyTrigger">reply</p>
+</div>
+
+<div class="spacer" ng-show="post.children.length"></div>
+
+<form ng-submit="createPost(post)" ng-show="post.replyTrigger" class="form-group reply-form">
+  <p>
+    <textarea ng-model="post.reply" class="form-control reply-body"></textarea>
+  </p>
+  <input type="submit" class="btn btn-default reply-submit" value="Save">
+  <p class="btn btn-default reply-submit" value="Cancel" ng-click="post.replyTrigger = false">
+    Cancel
+  </p>
+</form>
+
+<ul>
+  <li ng-repeat="post in post.children" ng-include="'./javascripts/templates/sub_post.html'"></li>
+</ul>

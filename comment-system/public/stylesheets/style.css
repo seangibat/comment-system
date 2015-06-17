@@ -6,3 +6,45 @@ body {
 a {
   color: #00B7FF;
 }
+
+.post-score {
+  font-size: .8em;
+}
+
+.reply-form {
+  margin-top: 1em;
+}
+
+.reply-submit {
+  border: none;
+  display: inline;
+}
+
+li {
+  margin-bottom: .5em;
+  border: 1px solid #CCC;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.spacer {
+  margin-top: 1em;
+}
+
+.score {
+  background-color: #444;
+  color: white;
+  border-radius: 10px;
+  padding-left: 3px;
+  padding-right: 3px;
+  margin-left: 3px;
+}
+
+.disabled {
+  color: #CCC;
+}
