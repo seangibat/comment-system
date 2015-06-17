@@ -6,7 +6,7 @@
 * npm install
 * bower install
 * change mongo and node ports in ```/comment-system/config.js``` if necessary
-* start mongo in different terminal (run ```mongod```)
+* start mongo in a different terminal (run ```mongod```)
 * start the server (run ```npm start```)
 * browse to localhost:3000 or whatever port you entered
 
