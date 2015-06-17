@@ -1,15 +1,43 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Sample</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/components/angular.min/index.js"></script>
+    <script src="/components/angular-resource.min/index.js"></script>
+    <script src="/components/angular-animate.min/index.js"></script>
     <script src="/javascripts/app.js"></script>
-    <script src="/components/jquery/dist/jquery.js"></script>
+    <script src="/javascripts/services/API.js"></script>
+    <script src="/javascripts/controllers/threadController.js"></script>
+
+    <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.css">
+
   </head>
   <body>
-    <input type="submit" id="thread-create" value="Create New Thread">
+    
+    <p>You are logged in as: <%= userName %>.</p>
 
-    <section id="threads">
+    <section id="comments">
+
+      <div ng-app="commentSystem" ng-controller="ThreadController">
+
+        <h3>{{thread.body}}</h3>
+
+        <form ng-submit="createPost(thread)">
+          <p>
+            <textarea ng-model="thread.reply" class="form-control">
+            </textarea>
+          </p>
+          <p><input type="submit" class="btn btn-default"></p>
+        </form>
+        
+        <ul>
+          <li ng-repeat="post in thread.children" ng-include="'/javascripts/templates/sub_post.html'"></li>
+        </ul>
+
+      </div>
+      
     </section>
+
   </body>
 </html>
