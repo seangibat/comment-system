@@ -5,14 +5,18 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var auth = require('./controllers/authController');
+var session = require('express-session')
+
+var MONGOOSE_PORT = require('./config').MONGOOSE_PORT;
+mongoose.connect('mongodb://localhost:" + MONGOOSE_PORT + "/comment-system');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');
+var stubData = require('./utils/stubData.js');
 
 var app = express();
-
-mongoose.connect('mongodb://localhost:27017/cmnd-development');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,10 +29,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({ secret: 'super secret' }));
+
+// hardcoded user auth
+app.use(auth);
 
 app.use('/', routes);
 app.use('/api', api);
-app.use('/users', users);
+app.use('/user', users);
+app.use('/:username', auth, function(req,res){ res.redirect('/') });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,29 +46,16 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
+// error handler
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {}
+    error: err
   });
 });
 
+// create a thread and two users
+stubData();
 
 module.exports = app;
