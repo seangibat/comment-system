@@ -1,12 +1,13 @@
-var tree = require('mongoose-path-tree');
 var mongoose = require('mongoose');
+var materializedPlugin = require('mongoose-materialized');
+var Schema = mongoose.Schema;
 
-var PostSchema = new mongoose.Schema({
-  threadParent : { type: Boolean, default: false },
-  body : { type: String, default: "" },
-  score : { type: Number, default: 0 }
+var PostSchema = new Schema({
+  score: { type: Number, default: 0 },
+  body: { type: String, default: "" },
+  author: { type: String, required: true }
 });
 
-PostSchema.plugin(tree);
+PostSchema.plugin(materializedPlugin);
 
 module.exports = mongoose.model('Post', PostSchema);

@@ -1,26 +1,18 @@
 var Post = require('../models/post.js');
 
-exports.getPost = function(req, res, next){
-  Post.findById(req.body.parentId, function(err, parent){
-    if (err) return next(err);
-  });
-};
-
 exports.createPost = function(req, res, next){
   Post.findById(req.body.parentId, function(err, parent){
     
+    console.log(req.body);
+
     var post = new Post({
-      body: req.body.postBody
+      body: req.body.postBody,
+      author: req.session.user.name
     });
 
-    post.parent = parent;
-    
-    parent.save(function(err){
+    parent.appendChild(post, function(err, child){
       if (err) return next(err);
-      post.save(function(err, post){
-        if (err) return next(err);
-        res.json(post);
-      });
+      res.json(child);
     });
 
   });
