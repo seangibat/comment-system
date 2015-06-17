@@ -3,8 +3,8 @@
 ## How to Run
 
 * ```cd comment-system```
-* npm install
-* bower install
+* ```npm install```
+* ```bower install```
 * change mongo and node ports in ```/comment-system/config.js``` if necessary
 * start mongo in a different terminal (run ```mongod```)
 * start the server (run ```npm start```)
