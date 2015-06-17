@@ -20,4 +20,4 @@ You will randomly be given a user. To choose one of the two users specifically, 
 
 I made an effort to disallow illegal voting. A user may only upvote or downvote a post by 1, but they should be allowed to change their vote. Both server and client perform this check.
 
-The sorting is done on the server. I experimented with ordering in Angular, but it felt like a UX faux-pas to suddenly move a post after you had voted on it.
+The sorting is done on the server. I experimented with ordering in Angular, but it felt like a UX faux-pas to immediately move a post after voting. Animation might have made it okay if I'd had time.
