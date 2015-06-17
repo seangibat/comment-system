@@ -14,6 +14,7 @@ You will randomly be given a user. To choose one of the two users specifically, 
 ## A Few Notes
 
 *Backend*: Node/Express/Mongo/Mongoose with mongoose-materialized to help represent the tree structure
+
 *Frontend*: Angular and Bootstrap
 
 I made an effort to disallow illegal voting. A user may only upvote or downvote a post by 1, but they should be allowed to change their vote. Both server and client perform this check.
