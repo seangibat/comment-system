@@ -6,8 +6,8 @@
 * npm install
 * bower install
 * change mongo and node ports in ```/comment-system/config.js``` if necessary
-* start mongo - run ```mongod```
-* start the server - run ```npm start```
+* start mongo in different terminal (run ```mongod```)
+* start the server (run ```npm start```)
 * browse to localhost:3000 or whatever port you entered
 
 You will randomly be given a user. To choose one of the two users specifically, go to localhost:3000/sean or localhost:3000/kan. This could be useful for testing out voting.
