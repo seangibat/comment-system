@@ -7,10 +7,14 @@ The front-end is going to be a self-contained module created in jQuery. If you p
 
 I'd also like deep-linking to single comments, but I'm still trying to think about how to do that within the container. It doesn't make sense to display a single comment within a container, so I may just use anchor links.
 
-
+The comments will be sorted on the server by score.
 
 If you were to design multiple sorting systems for comments, what would those systems be and how would you implement them?
->
+> I'm not entirely sure what this question means, so I'll talk about what I think it means.
+
+You could sort on the server or on the client. It's probably best to initially sort on the server by score. The mongo-tree library I'm using has an order option. If that didn't exist, ideally I'd want the query to return the results in order, whether that was SQL or Mongo.
+
+On the client side, you could have buttons at the top of the thread for sorting by score or date, ascending or descending. I'll use JavaScript's native sort method and pass in a function to compare by whatever was chosen, sorting the tree one level at a time until all levels were sorted. 
 
 --
 
