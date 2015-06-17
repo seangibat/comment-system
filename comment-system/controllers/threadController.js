@@ -22,12 +22,14 @@ exports.getFirstThread = function(req, res, next){
   Post.findOne({ parentId: null }, function(err, threadParent){
     if (err) return next(err);
 
-    threadParent.getArrayTree({ sort: { score: 1 } }, function(err, tree){
+    threadParent.getArrayTree({ sort: { score: -1 } }, function(err, tree){
       if (err) return next(err);
-      tree[0].children.sort(function(a,b){
-        if (a.score > b.score) return -1;
-        if (a.score <= b.score) return 1;
-      });
+      if (tree[0].children){
+        tree[0].children.sort(function(a,b){
+          if (a.score > b.score) return -1;
+          if (a.score <= b.score) return 1;
+        });
+      }
       res.json(tree[0]);
     });
   });

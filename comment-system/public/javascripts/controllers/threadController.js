@@ -8,7 +8,6 @@ commentSystem.controller("ThreadController", ['$scope', 'API', function($scope, 
     post.reply = "";
     post.replyTrigger = false;
     newPost.$save(function(newPost){
-      console.log(newPost);
       post.children = post.children || []
       post.children.push(newPost);
     });

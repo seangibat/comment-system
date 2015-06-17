@@ -19,7 +19,7 @@ module.exports.vote = function(req, res, next){
         User.findById(req.session.user._id, function(err, user){
           req.session.user.votes = req.session.user.votes || {};
           req.session.user.votes[postId] = newPostScoreForUser;
-          user.votes[postId] = newPostScoreForUser;
+          user.votes = req.session.user.votes;
           user.save(function(){
             res.json({ valid: true });
           });
